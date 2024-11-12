@@ -1,0 +1,30 @@
+﻿@model List<Producto>
+
+@{
+    ViewData["Title"] = "Listado de Productos";
+}
+
+<h3>Listado de productos</h3>
+
+<div class="filtro-container">
+    <input id="buscar" type="text" class="filtroInput" placeholder="Filtrar por nombre" />
+</div>
+
+<div class="product-grid" id="table">
+    @foreach (var producto in Model)
+    {
+        <div class="product-card">
+            <img src="@producto.Images.FirstOrDefault()" alt="@producto.Title" class="product-image" />
+            <div class="product-name">@producto.Title</div>
+            <div class="product-price">$@producto.Price</div>
+            <button class="btn btn-info verDetalles"
+                    data-id="@producto.Id"
+                    data-nombre="@producto.Title"
+                    data-precio="@producto.Price"
+                    data-description="@producto.Description"
+                    onclick="mostrarDetalles()">
+                Ver detalles
+            </button>
+        </div>
+    }
+</div>
